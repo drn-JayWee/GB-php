@@ -6,7 +6,7 @@ use GeekBrains\LevelTwo\Blog\Exceptions\InvalidArgumentException;
 
 class UUID
 {
-        // Внутри объекта мы храним UUID как строку
+    // Внутри объекта мы храним UUID как строку
     /**
      * @throws InvalidArgumentException
      */
@@ -25,9 +25,9 @@ class UUID
             );
         }
     }
-        // А так мы можем сгенерировать новый случайный UUID
+    // А так мы можем сгенерировать новый случайный UUID
 
-        // и получить его в качестве объекта нашего класса
+    // и получить его в качестве объекта нашего класса
     /**
      * @throws InvalidArgumentException
      */

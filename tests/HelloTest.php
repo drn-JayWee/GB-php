@@ -1,5 +1,4 @@
 <?php
-
 use PHPUnit\Framework\TestCase;
 
 class HelloTest extends TestCase
@@ -13,6 +12,7 @@ class HelloTest extends TestCase
 
     public function testAdd(): void
     {
-        $this->assertEquals(4, 2 + 2);
+        $this->assertEquals(4, 2+2);
     }
+
 }

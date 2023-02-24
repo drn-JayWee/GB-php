@@ -1,33 +1,20 @@
 <?php
 
-use GeekBrains\LevelTwo\Blog\Repositories\UsersRepository\SqliteUsersRepository;
+use GeekBrains\LevelTwo\Blog\Commands\Arguments;
+use GeekBrains\LevelTwo\Blog\Commands\CreateUserCommand;
 use GeekBrains\LevelTwo\Blog\UUID;
-use GeekBrains\LevelTwo\Blog\Repositories\PostsRepository\SqlitePostsRepository;
+use GeekBrains\LevelTwo\Blog\Like;
+use GeekBrains\LevelTwo\Blog\Repositories\LikesRepository\SqliteLikesRepository;
+use GeekBrains\LevelTwo\Blog\Repositories\LikesRepository\LikesRepositoryInterface;
 
-include __DIR__ . "/vendor/autoload.php";
-
-//Создаём объект подключения к SQLite
-$connection = new PDO('sqlite:' . __DIR__ . '/blog.sqlite');
-
-$usersRepository = new SqliteUsersRepository($connection);
-$postsRepository = new SqlitePostsRepository($connection);
+$container = require __DIR__ . '/bootstrap.php';
 
 try {
 
-$user = $usersRepository->get(new UUID('3b697686-01bf-433a-bf17-53ce84cb987b'));
-
-$post = $postsRepository->get(new UUID("fb58c755-9613-4945-b1d7-b2bd1979ae34"));
-
-print_r($post);
+    // При помощи контейнера создаём команду
+    $command = $container->get(CreateUserCommand::class);
+    $command->handle(Arguments::fromArgv($argv));
 
 } catch (Exception $e) {
     echo $e->getMessage();
 }
-/*
-$command = new CreateUserCommand($usersRepository);
-
-try {
-    $command->handle(Arguments::fromArgv($argv));
-} catch (Exception $e) {
-    echo $e->getMessage();
-}*/
