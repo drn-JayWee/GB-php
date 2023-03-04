@@ -13,7 +13,8 @@ class PasswordAuthentication implements PasswordAuthenticationInterface
 {
     public function __construct(
         private UsersRepositoryInterface $usersRepository
-    ) {
+    )
+    {
     }
 
     /**
@@ -32,9 +33,9 @@ class PasswordAuthentication implements PasswordAuthenticationInterface
         } catch (UserNotFoundException $e) {
             throw new AuthException($e->getMessage());
         }
-        // 2. Аутентифицируем пользователя
-        // Проверяем, что предъявленный пароль
-        // соответствует сохранённому в БД
+// 2. Аутентифицируем пользователя
+// Проверяем, что предъявленный пароль
+// соответствует сохранённому в БД
         try {
             $password = $request->jsonBodyField('password');
         } catch (HttpException $e) {
@@ -43,11 +44,12 @@ class PasswordAuthentication implements PasswordAuthenticationInterface
 
 
         if (!$user->checkPassword($password)) {
-            // Если пароли не совпадают — бросаем исключение
+// Если пароли не совпадают — бросаем исключение
             throw new AuthException('Wrong password');
         }
 
-        // Пользователь аутентифицирован
+// Пользователь аутентифицирован
         return $user;
     }
+
 }
